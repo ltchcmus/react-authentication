@@ -15,7 +15,7 @@ services:
       DB_TYPE: postgres
       DB_HOST: aws-1-ap-southeast-1.pooler.supabase.com
       DB_PORT: 6543
-      DB_USER: postgres.ocsiyrhtbtscivbedkqx
+      DB_USER: postgres.impkpqyfqdzhrrsfptdl
       DB_PASS: Cong2642005@@
       DB_NAME: postgres
       # Server Configuration
