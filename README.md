@@ -4,11 +4,11 @@
 
 **Sinh viên thực hiện:** Lê Thành Công - MSSV: 23120222
 
-**URL sản phẩm:** [https://frontend-simple-fullstack.vercel.app](https://frontend-simple-fullstack.vercel.app)
+**URL sản phẩm:** https://react-authentication-plum.vercel.app
 
-**Base URL Backend:** https://backend-simple-fullstack.onrender.com
+**Base URL Backend:** https://react-authentication-0xsg.onrender.com
 
-**Repository:** https://github.com/ltchcmus/basic-user-fullstack
+**Repository:** https://github.com/ltchcmus/react-authentication
 
 ## Tính Năng Chính
 
