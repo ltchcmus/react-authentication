@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Backend Service (NestJS)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: userhub-backend
+    restart: unless-stopped
+    ports:
+      - "9999:9999"
+    environment:
+      # Database Configuration - Using your existing database
+      DB_TYPE: postgres
+      DB_HOST: aws-1-ap-southeast-1.pooler.supabase.com
+      DB_PORT: 6543
+      DB_USER: postgres.ocsiyrhtbtscivbedkqx
+      DB_PASS: Cong2642005@@
+      DB_NAME: postgres
+      # Server Configuration
+      PORT: 9999
+      API_KEY: lethanhcongW9KzkHtB1vmRrjRmPY6zCxZOkWfwUglrGOwOxKBSREEzF7VLGhXPMEH7mgdrKkCwL4k74qeXLNwywXQRcgrzek
+      FRONTEND_URL: http://localhost:3000
+    networks:
+      - userhub-network
+
+  # Frontend Service (React + Vite)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:9999
+        VITE_X_API_KEY: lethanhcongW9KzkHtB1vmRrjRmPY6zCxZOkWfwUglrGOwOxKBSREEzF7VLGhXPMEH7mgdrKkCwL4k74qeXLNwywXQRcgrzek
+    container_name: userhub-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - userhub-network
+
+networks:
+  userhub-network:
+    driver: bridge

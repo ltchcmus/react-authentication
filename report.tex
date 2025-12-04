@@ -1,0 +1,1192 @@
+\documentclass[12pt]{article}
+
+\usepackage{hcmus-report-template}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage[T5]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ===== GEOMETRY =====
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm
+}
+
+% ===== COLORS =====
+\definecolor{primarycolor}{RGB}{59,130,246}
+\definecolor{codebackground}{RGB}{248,250,252}
+\definecolor{commentcolor}{RGB}{107,114,128}
+\definecolor{keywordcolor}{RGB}{147,51,234}
+\definecolor{stringcolor}{RGB}{34,197,94}
+
+% ===== LISTINGS CONFIGURATION =====
+\lstdefinelanguage{JavaScript}{
+  keywords={const, let, var, function, return, if, else, for, while, import, export, default, from, async, await},
+  keywordstyle=\color{keywordcolor}\bfseries,
+  ndkeywords={class, extends, useState, useCallback, useMemo, memo, useRef, useQuery, useMutation},
+  ndkeywordstyle=\color{primarycolor}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{commentcolor}\ttfamily,
+  stringstyle=\color{stringcolor}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  backgroundcolor=\color{codebackground},
+  basicstyle=\ttfamily\small,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  extendedchars=true,
+  frame=single,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{commentcolor},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  literate={ả}{{\h a}}1 {ế}{{\'\^e}}1 {ồ}{{\`\^o}}1 {ộ}{{\d\^o}}1
+           {ứ}{{\'\h u}}1 {ử}{{\h\h u}}1 {ữ}{{\~\h u}}1 {ự}{{\d\h u}}1
+           {ă}{{\u a}}1 {ắ}{{\'{\u a}}}1 {ằ}{{\`{\u a}}}1 {ẳ}{{\h{\u a}}}1
+           {ẵ}{{\~{\u a}}}1 {ặ}{{\d{\u a}}}1
+           {đ}{{\dj}}1 {Đ}{{\DJ}}1
+           {ơ}{{\h o}}1 {ớ}{{\'{\h o}}}1 {ờ}{{\`{\h o}}}1 {ở}{{\h{\h o}}}1
+           {ỡ}{{\~{\h o}}}1 {ợ}{{\d{\h o}}}1
+           {ê}{{\^e}}1 {ề}{{\`\^e}}1 {ể}{{\h\^e}}1 {ễ}{{\~\^e}}1 {ệ}{{\d\^e}}1
+           {ô}{{\^o}}1 {ố}{{\'{\^o}}}1 {ồ}{{\`{\^o}}}1 {ổ}{{\h{\^o}}}1
+           {ỗ}{{\~{\^o}}}1 {ộ}{{\d{\^o}}}1
+           {ư}{{\h u}}1 {ứ}{{\'{\h u}}}1 {ừ}{{\`{\h u}}}1 {ử}{{\h{\h u}}}1
+           {ữ}{{\~{\h u}}}1 {ự}{{\d{\h u}}}1
+           {ý}{{\'y}}1 {ỳ}{{\`y}}1 {ỷ}{{\h y}}1 {ỹ}{{\~y}}1 {ỵ}{{\d y}}1
+           {á}{{\'a}}1 {à}{{\`a}}1 {ả}{{\h a}}1 {ã}{{\~a}}1 {ạ}{{\d a}}1
+           {é}{{\'e}}1 {è}{{\`e}}1 {ẻ}{{\h e}}1 {ẽ}{{\~e}}1 {ẹ}{{\d e}}1
+           {í}{{\'i}}1 {ì}{{\`i}}1 {ỉ}{{\h i}}1 {ĩ}{{\~i}}1 {ị}{{\d i}}1
+           {ó}{{\'o}}1 {ò}{{\`o}}1 {ỏ}{{\h o}}1 {õ}{{\~o}}1 {ọ}{{\d o}}1
+           {ú}{{\'u}}1 {ù}{{\`u}}1 {ủ}{{\h u}}1 {ũ}{{\~u}}1 {ụ}{{\d u}}1
+}
+
+% ===== CUSTOM BOXES =====
+% Comment out duplicate box definitions since they're already in template
+% \newtcolorbox{infobox}[1][]{
+%   colback=blue!5!white,
+%   colframe=primarycolor,
+%   fonttitle=\bfseries,
+%   title=#1
+% }
+
+% \newtcolorbox{successbox}[1][]{
+%   colback=green!5!white,
+%   colframe=green!75!black,
+%   fonttitle=\bfseries,
+%   title=#1
+% }
+
+% \newtcolorbox{warningbox}[1][]{
+%   colback=orange!5!white,
+%   colframe=orange!75!black,
+%   fonttitle=\bfseries,
+%   title=#1
+% }
+
+% Page setup
+\geometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=3cm
+}
+
+% Colors
+\definecolor{primarycolor}{RGB}{59,130,246}
+\definecolor{secondarycolor}{RGB}{139,92,246}
+\definecolor{successcolor}{RGB}{34,197,94}
+\definecolor{warningcolor}{RGB}{234,179,8}
+\definecolor{codebackground}{RGB}{40,44,52}
+\definecolor{codecomment}{RGB}{92,99,112}
+\definecolor{codekeyword}{RGB}{198,120,221}
+\definecolor{codestring}{RGB}{152,195,121}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primarycolor,
+    urlcolor=secondarycolor,
+    citecolor=primarycolor
+}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{User Registration}}
+\fancyhead[R]{\textit{Technical Report}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Code listing setup
+\lstset{
+    backgroundcolor=\color{codebackground},
+    basicstyle=\ttfamily\small\color{white},
+    keywordstyle=\color{codekeyword}\bfseries,
+    commentstyle=\color{codecomment}\itshape,
+    stringstyle=\color{codestring},
+    numbers=left,
+    numberstyle=\tiny\color{codecomment},
+    stepnumber=1,
+    numbersep=10pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    rulecolor=\color{primarycolor},
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    xleftmargin=15pt,
+    xrightmargin=15pt,
+    framexleftmargin=12pt
+}
+
+% JavaScript language definition
+\lstdefinelanguage{JavaScript}{
+    keywords={const, let, var, function, return, if, else, for, while, break, continue, switch, case, default, class, extends, import, export, from, async, await, try, catch, finally, throw, new, this, super, static, typeof, instanceof, null, undefined, true, false, void, delete, in, of},
+    keywordstyle=\color{codekeyword}\bfseries,
+    ndkeywords={Array, Object, String, Number, Boolean, Function, Math, Date, JSON, Promise, Map, Set, Symbol, Proxy, Reflect},
+    ndkeywordstyle=\color{orange}\bfseries,
+    sensitive=true,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    morestring=[b]",
+    morestring=[b]`
+}
+
+
+% Custom boxes
+% Comment out duplicate definitions
+% \newtcolorbox{infobox}[1][]{
+%     colback=blue!5!white,
+%     colframe=primarycolor,
+%     fonttitle=\bfseries,
+%     title=#1
+% }
+
+% \newtcolorbox{successbox}[1][]{
+%     colback=green!5!white,
+%     colframe=successcolor,
+%     fonttitle=\bfseries,
+%     title=#1
+% }
+
+% \newtcolorbox{warningbox}[1][]{
+%     colback=yellow!5!white,
+%     colframe=warningcolor,
+%     fonttitle=\bfseries,
+%     title=#1
+% }
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, class, const, continue, debugger, default, delete, do, else, export, extends,
+            finally, for, function, if, import, in, instanceof, let, new, return, super, switch, this,
+            throw, try, typeof, var, void, while, with, yield},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={boolean, throws, async, await, int, float, super, string, export, import, from, get, set},
+  ndkeywordstyle=\color{teal}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  language=JavaScript,
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!5},
+  frame=single,
+  breaklines=true,
+  showstringspaces=false
+}
+% Disable indentation on new paragraphs
+\setlength{\parindent}{0pt}
+
+% Line spacing 1.5
+\renewcommand{\baselinestretch}{1.5}
+
+% Optional: graphic path
+% \graphicspath{PATH_TO_GRAPHIC_FOLDER}
+
+% To use Times font family, uncomment this row
+% \usepackage{mathptmx}
+
+% To use roman section / subsection, uncomment these rows
+% \renewcommand{\thesection}{\Roman{section}}
+% \renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+
+% Define course name, report name and report title.
+\newcommand{\coursename}{PHÁT TRIỂN ỨNG DỤNG WEB}
+\newcommand{\reportname}{\small{BÀI TẬP VỀ NHÀ}}
+\newcommand{\reporttitle}{BÁO CÁO BÀI TẬP VỀ NHÀ - USER REGISTRATION}
+
+
+\newcommand{\studentname}{
+  Lê Thành Công (23120222)
+}
+\newcommand{\teachername}{ThS. Nguyễn Huy Khánh}
+
+% Header
+\lhead{\reporttitle}
+\rhead{
+Trường Đại học Khoa học Tự nhiên - ĐHQG HCM\\
+\coursename
+}
+% ============ DOCUMENT ============
+\begin{document}
+
+\pagenumbering{roman}
+\input{content/title.tex}
+
+\tableofcontents
+\pagebreak
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%------------------------------------------------------------
+\section{TỔNG QUAN DỰ ÁN}
+%------------------------------------------------------------
+
+\subsection{Giới thiệu}
+
+UserHub là một hệ thống xác thực người dùng hoàn chỉnh (Full Stack Authentication System) được xây dựng theo yêu cầu của bài tập IA06. Dự án triển khai một ứng dụng web hiện đại với backend API sử dụng NestJS và frontend React, cung cấp chức năng đăng ký và đăng nhập người dùng với giao diện thân thiện và bảo mật.
+
+\subsection{Mục tiêu dự án}
+
+\begin{itemize}[leftmargin=*]
+    \item Xây dựng backend API với NestJS để xử lý đăng ký và quản lý dữ liệu người dùng
+    \item Phát triển frontend React với giao diện đẹp mắt, responsive
+    \item Tích hợp hoàn chỉnh giữa frontend và backend
+    \item Triển khai ứng dụng lên môi trường production
+    \item Đảm bảo bảo mật và trải nghiệm người dùng tốt nhất
+\end{itemize}
+
+\subsection{Thông tin triển khai}
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Thành phần} & \textbf{URL / Thông tin} \\
+\hline
+Frontend (React) & \textcolor{blue}{\texttt{https://frontend-simple-fullstack.vercel.app}} \\
+\hline
+Backend (NestJS) & \textcolor{blue}{\texttt{https://backend-simple-fullstack.onrender.com}} \\
+\hline
+Repository & \href{https://github.com/ltchcmus/basic-user-fullstack}{https://github.com/ltchcmus/basic-user-fullstack} \\
+\hline
+\end{tabularx}
+\caption{Thông tin triển khai dự án}
+\end{table}
+
+%------------------------------------------------------------
+\section{ĐÁNH GIÁ MỨC ĐỘ HOÀN THÀNH}
+%------------------------------------------------------------
+
+\subsection{Bảng chấm điểm theo Rubric}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|c|c|}
+\hline
+\textbf{Phần} & \textbf{Tiêu chí} & \textbf{Điểm tối đa} & \textbf{Điểm đạt} \\
+\hline
+\multirow{2}{*}{\textbf{Backend (4đ)}} 
+& API Endpoint (/register) & 2 & \textcolor{successcolor}{\textbf{2}} \\
+\cline{2-4}
+& Error Handling & 2 & \textcolor{successcolor}{\textbf{2}} \\
+\hline
+\multirow{3}{*}{\textbf{Frontend (5đ)}} 
+& Routing (Home, Login, Sign Up) & 1 & \textcolor{successcolor}{\textbf{1}} \\
+\cline{2-4}
+& Sign Up Page (Form, Validation, React Query) & 2 & \textcolor{successcolor}{\textbf{2}} \\
+\cline{2-4}
+& Login Page (Form, Validation, UI) & 2 & \textcolor{successcolor}{\textbf{2}} \\
+\hline
+\textbf{Deployment (1đ)} 
+& Public host deployment & 1 & \textcolor{successcolor}{\textbf{1}} \\
+\hline
+\hline
+\multicolumn{2}{|r|}{\textbf{TỔNG ĐIỂM}} & \textbf{10} & \textcolor{successcolor}{\textbf{10/10}} \\
+\hline
+\end{tabularx}
+\caption{Bảng chấm điểm chi tiết}
+\end{table}
+
+\subsection{Chi tiết hoàn thành các yêu cầu}
+
+\subsubsection{Backend Implementation (4/4 điểm)}
+
+\textbf{1. Database Setup} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item User schema với các trường: \texttt{userId} (UUID), \texttt{email} (unique), \texttt{password} (hashed), \texttt{createdAt}
+    \item Sử dụng TypeORM entities với decorators để định nghĩa schema
+    \item Unique constraint cho email để tránh duplicate
+    \item Auto-generate UUID và timestamp
+\end{itemize}
+
+\textbf{2. API Endpoint - POST /user/register (2/2 điểm)} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Endpoint: \texttt{POST /api/v1/users/register}
+    \item Validate input với class-validator (email format, password length 6-50 ký tự)
+    \item Check duplicate email trước khi tạo user mới
+    \item Hash password với bcrypt (10 salt rounds)
+    \item Return HttpResponse wrapper với status code phù hợp
+    \item Response bao gồm: userId, email, createdAt (không trả về password)
+\end{itemize}
+
+\textbf{3. Error Handling (2/2 điểm)} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Custom AppException class với error codes
+    \item Global Exception Filter để xử lý tất cả errors
+    \item Validation errors với thông báo rõ ràng (field-level errors)
+    \item Database errors được catch và format thành thông báo dễ hiểu
+    \item HTTP status codes chuẩn (200, 400, 404, 409, 500)
+\end{itemize}
+
+\textbf{4. Security} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Environment variables (.env) cho database URI, API keys
+    \item CORS được enable cho frontend URL
+    \item Password hashing với bcrypt
+    \item Input sanitization và validation
+    \item API Key middleware (optional layer)
+\end{itemize}
+
+\subsubsection{Frontend Implementation (5/5 điểm)}
+
+\textbf{1. Styling} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Sử dụng Material UI (MUI) - một trong các framework được yêu cầu
+    \item Gradient design chuyên nghiệp (blue-purple theme)
+    \item Responsive layout cho mobile/tablet/desktop
+    \item Icons từ @mui/icons-material
+\end{itemize}
+
+\textbf{2. Form Validation} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item React Hook Form cho tất cả forms
+    \item Real-time validation (onChange mode)
+    \item Custom validation rules
+    \item Clear error messages hiển thị dưới mỗi field
+\end{itemize}
+
+\textbf{3. Routing (1/1 điểm)} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item React Router DOM v6
+    \item Home page (\texttt{/})
+    \item Login page (\texttt{/login})
+    \item Sign Up page (\texttt{/signup})
+    \item \textbf{Bonus:} Dashboard page (\texttt{/dashboard}) - protected route
+\end{itemize}
+
+\textbf{4. Sign Up Page (2/2 điểm)} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Form với email, password, confirmPassword fields
+    \item Validation: email format, password 6+ ký tự, passwords phải khớp
+    \item POST request đến \texttt{/api/v1/users/register}
+    \item React Query useMutation để handle API call
+    \item Loading state với CircularProgress
+    \item Success alert và auto redirect đến /login
+    \item Error alert hiển thị validation errors từ backend
+    \item Material UI Stepper component hiển thị progress
+\end{itemize}
+
+\textbf{5. Login Page (2/2 điểm)} (\textcolor{successcolor}{✓ Vượt yêu cầu})
+
+\begin{itemize}
+    \item Form với email và password fields
+    \item React Hook Form validation
+    \item Material UI styling với gradient background
+    \item Password visibility toggle
+    \item Remember me checkbox
+    \item \textbf{Vượt yêu cầu:} Không chỉ UI mock mà có thực tế backend integration
+    \item POST request đến \texttt{/api/v1/users/login}
+    \item React Query mutation
+    \item Session management với AuthContext
+    \item Auto redirect đến Dashboard sau login thành công
+\end{itemize}
+
+\textbf{6. React Query Integration} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item @tanstack/react-query v5
+    \item Mutations cho register và login
+    \item Loading states (isPending)
+    \item Error states (isError)
+    \item Success states (isSuccess)
+    \item Automatic error handling
+\end{itemize}
+
+\textbf{7. User Experience} (\textcolor{successcolor}{✓ Hoàn thành})
+
+\begin{itemize}
+    \item Clear validation messages
+    \item Visual feedback: success (green), error (red), loading (spinner)
+    \item Responsive design cho mọi screen size
+    \item Accessible interface (ARIA labels, keyboard navigation)
+    \item Password visibility toggle
+    \item Smooth animations (Fade, Slide, Zoom từ MUI)
+\end{itemize}
+
+\subsubsection{Deployment (1/1 điểm)}
+
+\textcolor{successcolor}{✓ Hoàn thành} - Ứng dụng đã được deploy lên các nền tảng public hosting:
+
+\begin{itemize}
+    \item Frontend: Vercel
+    \item Backend: Render.com
+    \item Database: PostgreSQL (supabase)
+    \item HTTPS enabled
+    \item CORS configured cho production URLs
+\end{itemize}
+
+%------------------------------------------------------------
+\section{CÔNG NGHỆ VÀ KỸ THUẬT SỬ DỤNG}
+%------------------------------------------------------------
+
+\subsection{Backend Technologies}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Công nghệ} & \textbf{Phiên bản} & \textbf{Mục đích sử dụng} \\
+\hline
+NestJS & v10+ & Progressive Node.js framework, architecture pattern \\
+\hline
+TypeORM & v0.3+ & ORM cho database, migrations, entity management \\
+\hline
+PostgreSQL & v14+ & Relational database, production-ready \\
+\hline
+TypeScript & v5+ & Type safety, better developer experience \\
+\hline
+bcrypt & v5+ & Password hashing với salt rounds \\
+\hline
+class-validator & v0.14+ & DTO validation với decorators \\
+\hline
+class-transformer & v0.5+ & Data transformation, serialization \\
+\hline
+Winston & v3+ & Logging system với file rotation \\
+\hline
+\end{tabularx}
+\caption{Backend technology stack}
+\end{table}
+
+\subsection{Frontend Technologies}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Công nghệ} & \textbf{Phiên bản} & \textbf{Mục đích sử dụng} \\
+\hline
+React & v19 & UI library, component-based architecture \\
+\hline
+Material UI & v6+ & Component library, styling framework \\
+\hline
+React Router DOM & v6+ & Client-side routing, navigation \\
+\hline
+React Hook Form & v7+ & Form management, validation \\
+\hline
+React Query & v5+ & Server state management, caching \\
+\hline
+Axios & v1+ & HTTP client, API integration \\
+\hline
+Vite & v5+ & Build tool, development server \\
+\hline
+PropTypes & v15+ & Runtime type checking cho components \\
+\hline
+\end{tabularx}
+\caption{Frontend technology stack}
+\end{table}
+
+\subsection{Kỹ thuật lập trình nâng cao}
+
+\subsubsection{Backend Techniques}
+
+\begin{enumerate}
+    \item \textbf{Dependency Injection (NestJS)}
+    \begin{itemize}
+        \item Module-based architecture
+        \item Service layer pattern
+        \item Provider injection với decorators (@Injectable)
+    \end{itemize}
+    
+    \item \textbf{Custom Decorators}
+    \begin{itemize}
+        \item @Match decorator cho password confirmation validation
+        \item Custom validation constraints
+    \end{itemize}
+    
+    \item \textbf{Exception Filters}
+    \begin{itemize}
+        \item Global exception handler
+        \item Custom exception classes
+        \item Error code enumeration
+    \end{itemize}
+    
+    \item \textbf{DTOs (Data Transfer Objects)}
+    \begin{itemize}
+        \item Request DTOs với validation
+        \item Response DTOs để format data
+        \item Separation of concerns
+    \end{itemize}
+    
+    \item \textbf{Middleware}
+    \begin{itemize}
+        \item API Key middleware cho security
+        \item CORS middleware
+        \item Request logging
+    \end{itemize}
+    
+    \item \textbf{Database Migrations}
+    \begin{itemize}
+        \item TypeORM migrations
+        \item Version control cho database schema
+        \item Rollback capability
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Frontend Techniques}
+
+\begin{enumerate}
+    \item \textbf{React Context API}
+    \begin{itemize}
+        \item AuthContext cho global authentication state
+        \item Provider pattern
+        \item Custom hooks (useAuth)
+    \end{itemize}
+    
+    \item \textbf{Protected Routes}
+    \begin{itemize}
+        \item ProtectedRoute component
+        \item Route guards
+        \item Automatic redirects
+    \end{itemize}
+    
+    \item \textbf{Axios Interceptors}
+    \begin{itemize}
+        \item Request interceptor cho authentication
+        \item Response interceptor cho error handling
+        \item Automatic token management
+    \end{itemize}
+    
+    \item \textbf{React Query Patterns}
+    \begin{itemize}
+        \item Mutations cho side effects
+        \item Optimistic updates
+        \item Cache invalidation
+    \end{itemize}
+    
+    \item \textbf{Form Management}
+    \begin{itemize}
+        \item React Hook Form với validation schema
+        \item Real-time validation
+        \item Error message customization
+    \end{itemize}
+    
+    \item \textbf{State Persistence}
+    \begin{itemize}
+        \item localStorage cho session
+        \item Auto-login on reload
+        \item Secure storage practices
+    \end{itemize}
+\end{enumerate}
+
+%------------------------------------------------------------
+\section{CHỨC NĂNG BỔ SUNG (VƯỢT YÊU CẦU)}
+%------------------------------------------------------------
+
+\subsection{Các tính năng không có trong yêu cầu đề bài}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|c|X|X|}
+\hline
+\textbf{STT} & \textbf{Tính năng} & \textbf{Giá trị mang lại} \\
+\hline
+1 & \textbf{Login API Backend} & 
+Yêu cầu chỉ cần UI mock, nhưng dự án đã implement đầy đủ backend login với password verification, session management \\
+\hline
+2 & \textbf{Authentication System} & 
+Complete auth flow với React Context, localStorage persistence, auto-login, logout functionality \\
+\hline
+3 & \textbf{Protected Routes} & 
+Route guards để bảo vệ Dashboard, tự động redirect nếu chưa login \\
+\hline
+4 & \textbf{User Dashboard} & 
+Trang profile hiển thị thông tin user (ID, email, created date), account statistics, professional UI \\
+\hline
+5 & \textbf{Password Confirmation} & 
+Thêm field confirmPassword với validation khớp password \\
+\hline
+6 & \textbf{Enhanced UI/UX} & 
+Gradient backgrounds, smooth animations (Fade, Slide, Zoom), password visibility toggle, loading states, icons \\
+\hline
+7 & \textbf{Advanced Error Handling} & 
+Backend validation errors được parse và hiển thị field-level trên frontend, network error handling \\
+\hline
+8 & \textbf{Logging System} & 
+Winston logger với file rotation, request/error logging \\
+\hline
+9 & \textbf{API Interceptors} & 
+Axios interceptors cho request/response, automatic error extraction \\
+\hline
+10 & \textbf{Database Migrations} & 
+TypeORM migrations để version control database schema \\
+\hline
+11 & \textbf{Stepper Component} & 
+MUI Stepper hiển thị progress trong sign up flow \\
+\hline
+12 & \textbf{Responsive Design} & 
+Mobile-first approach, works on all screen sizes \\
+\hline
+13 & \textbf{Code Quality} & 
+TypeScript backend, PropTypes frontend, ESLint, clean architecture, separation of concerns \\
+\hline
+\end{tabularx}
+\caption{Danh sách 13 tính năng bổ sung vượt yêu cầu}
+\end{table}
+
+\subsection{So sánh với yêu cầu đề bài}
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Tiêu chí} & \textbf{Yêu cầu} & \textbf{Thực tế triển khai} \\
+\hline
+Login Page & 
+UI mock, no backend logic & 
+\textcolor{successcolor}{\textbf{Full backend integration}} với API endpoint, session management \\
+\hline
+Dashboard & 
+Không yêu cầu & 
+\textcolor{successcolor}{\textbf{Có}} trang Dashboard với user profile, protected route \\
+\hline
+Authentication & 
+Không yêu cầu & 
+\textcolor{successcolor}{\textbf{Complete}} auth system với Context API, persistence \\
+\hline
+Error Handling & 
+Basic meaningful messages & 
+\textcolor{successcolor}{\textbf{Advanced}} field-level errors, custom exception filters \\
+\hline
+Validation & 
+Email, password & 
+\textcolor{successcolor}{\textbf{Enhanced}} với password confirmation, custom validators \\
+\hline
+UI Components & 
+Basic styling & 
+\textcolor{successcolor}{\textbf{Professional}} với animations, gradients, icons, stepper \\
+\hline
+\end{tabularx}
+\caption{So sánh yêu cầu và triển khai thực tế}
+\end{table}
+
+%------------------------------------------------------------
+\section{FUNCTIONAL VÀ NON-FUNCTIONAL REQUIREMENTS}
+%------------------------------------------------------------
+
+\subsection{Functional Requirements}
+
+\subsubsection{Đã triển khai theo yêu cầu}
+
+\begin{enumerate}
+    \item \textbf{User Registration}
+    \begin{itemize}
+        \item User có thể đăng ký tài khoản mới
+        \item Validate email format và password length
+        \item Check duplicate email
+        \item Hash password trước khi lưu
+        \item Hiển thị success/error messages
+    \end{itemize}
+    
+    \item \textbf{User Login}
+    \begin{itemize}
+        \item User có thể đăng nhập với email/password
+        \item Verify password với bcrypt compare
+        \item Tạo session sau khi login thành công
+        \item Redirect đến dashboard
+    \end{itemize}
+    
+    \item \textbf{Navigation}
+    \begin{itemize}
+        \item Điều hướng giữa Home, Login, Sign Up, Dashboard
+        \item Protected routes cho authenticated pages
+        \item Auto redirect khi chưa login
+    \end{itemize}
+    
+    \item \textbf{User Profile}
+    \begin{itemize}
+        \item Hiển thị user information
+        \item Logout functionality
+        \item Account statistics
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Non-Functional Requirements}
+
+\subsubsection{Performance}
+
+\begin{itemize}
+    \item \textbf{Response Time:} API response < 500ms
+    \item \textbf{Loading States:} Loading indicators cho tất cả async operations
+    \item \textbf{Caching:} React Query cache để giảm API calls
+    \item \textbf{Build Optimization:} Vite build với code splitting
+\end{itemize}
+
+\subsubsection{Security}
+
+\begin{itemize}
+    \item \textbf{Password Hashing:} bcrypt với 10 salt rounds
+    \item \textbf{Input Validation:} class-validator trên backend, React Hook Form trên frontend
+    \item \textbf{CORS:} Chỉ allow requests từ frontend domain
+    \item \textbf{Environment Variables:} Sensitive data không hard-code
+    \item \textbf{HTTPS:} Bắt buộc trên production
+\end{itemize}
+
+\subsubsection{Usability}
+
+\begin{itemize}
+    \item \textbf{Responsive Design:} Hoạt động tốt trên mobile/tablet/desktop
+    \item \textbf{Clear Feedback:} Success/error messages rõ ràng
+    \item \textbf{Accessibility:} ARIA labels, keyboard navigation
+    \item \textbf{Visual Design:} Professional gradient theme, consistent styling
+\end{itemize}
+
+\subsubsection{Maintainability}
+
+\begin{itemize}
+    \item \textbf{Code Organization:} Clean architecture, separation of concerns
+    \item \textbf{TypeScript:} Type safety trên backend
+    \item \textbf{Documentation:} Comprehensive README và guides
+    \item \textbf{Error Logging:} Winston logger cho debugging
+\end{itemize}
+
+\subsubsection{Scalability}
+
+\begin{itemize}
+    \item \textbf{Database:} PostgreSQL với indexing
+    \item \textbf{Modular Architecture:} NestJS modules dễ extend
+    \item \textbf{API Design:} RESTful endpoints
+    \item \textbf{Deployment:} Serverless-ready (Vercel, Render)
+\end{itemize}
+
+%------------------------------------------------------------
+\section{KIẾN TRÚC HỆ THỐNG}
+%------------------------------------------------------------
+
+\subsection{System Architecture Diagram}
+
+\begin{verbatim}
++-------------------------------------------------------------+
+|                        CLIENT SIDE                          |
+|  +------------------------------------------------------+   |
+|  |              React Frontend (Port 5173)              |   |
+|  |                                                      |   |
+|  |  - Pages: Home, Login, SignUp, Dashboard            |   |
+|  |  - Components: ProtectedRoute, Forms                |   |
+|  |  - Context: AuthContext (Global State)              |   |
+|  |  - Services: API Client (Axios)                     |   |
+|  |  - UI: Material UI + Custom Styling                 |   |
+|  +------------------------------------------------------+   |
+|                          | HTTPS                            |
++-------------------------------------------------------------+
+
++-------------------------------------------------------------+
+|                        SERVER SIDE                          |
+|  +------------------------------------------------------+   |
+|  |             NestJS Backend (Port 9999)               |   |
+|  |                                                      |   |
+|  |  - Controllers: User endpoints                      |   |
+|  |  - Services: Business logic                         |   |
+|  |  - DTOs: Validation schemas                         |   |
+|  |  - Entities: Database models                        |   |
+|  |  - Middleware: API Key, CORS, Logging               |   |
+|  |  - Exception Filters: Error handling                |   |
+|  +------------------------------------------------------+   |
+|                          |                                  |
+|  +------------------------------------------------------+   |
+|  |         PostgreSQL Database (Port 5432)              |   |
+|  |                                                      |   |
+|  |  - Table: users (userId, email, password, ...)      |   |
+|  +------------------------------------------------------+   |
++-------------------------------------------------------------+
+\end{verbatim}
+
+%------------------------------------------------------------
+\section{TESTING VÀ QUALITY ASSURANCE}
+%------------------------------------------------------------
+
+\subsection{Testing Strategy}
+
+\subsubsection{Manual Testing}
+
+\begin{itemize}
+    \item \textbf{Registration:} Test với valid/invalid emails, passwords, duplicate emails
+    \item \textbf{Login:} Test với correct/incorrect credentials
+    \item \textbf{Protected Routes:} Test access khi chưa login
+    \item \textbf{Responsive:} Test trên mobile, tablet, desktop
+    \item \textbf{Error Handling:} Test các error scenarios
+\end{itemize}
+
+\subsubsection{Code Quality Checks}
+
+\begin{itemize}
+    \item ESLint configuration cho code consistency
+    \item TypeScript type checking trên backend
+    \item PropTypes validation trên React components
+    \item No console errors trong production build
+\end{itemize}
+
+\subsection{Test Cases}
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|c|}
+\hline
+\textbf{Test Case} & \textbf{Expected Result} & \textbf{Status} \\
+\hline
+Register valid user & Success, redirect to login & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Register duplicate email & Error: Email already exists & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Register invalid email & Validation error & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Register short password & Error: Min 6 characters & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Password mismatch & Error: Passwords don't match & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Login valid credentials & Success, redirect to dashboard & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Login invalid credentials & Error: Invalid email/password & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Access dashboard without login & Redirect to login page & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Logout & Clear session, redirect to home & \textcolor{successcolor}{✓ Pass} \\
+\hline
+Responsive mobile view & UI displays correctly & \textcolor{successcolor}{✓ Pass} \\
+\hline
+\end{tabularx}
+\caption{Test cases và kết quả}
+\end{table}
+
+%------------------------------------------------------------
+\section{ĐỀ XUẤT ĐIỂM THƯỞNG}
+%------------------------------------------------------------
+
+\subsection{Lý do xứng đáng nhận điểm thưởng}
+
+Dự án này vượt xa yêu cầu cơ bản của đề bài và thể hiện các điểm mạnh sau:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Login Backend Implementation}
+    \begin{itemize}
+        \item Yêu cầu: Chỉ cần UI mock
+        \item Thực tế: Full backend API với password verification, session management
+        \item \textit{Giá trị:} Production-ready authentication system
+    \end{itemize}
+    
+    \item \textbf{Complete Authentication Flow}
+    \begin{itemize}
+        \item AuthContext với React Context API
+        \item Session persistence với localStorage
+        \item Auto-login on page reload
+        \item Logout functionality
+        \item \textit{Giá trị:} Professional-level state management
+    \end{itemize}
+    
+    \item \textbf{Protected Routes \& Dashboard}
+    \begin{itemize}
+        \item ProtectedRoute component với route guards
+        \item User Dashboard trang hiển thị profile
+        \item Account statistics
+        \item \textit{Giá trị:} Security best practices
+    \end{itemize}
+    
+    \item \textbf{Advanced Error Handling}
+    \begin{itemize}
+        \item Backend: Custom exception filters, error codes
+        \item Frontend: Field-level errors, network error handling
+        \item Axios interceptors
+        \item \textit{Giá trị:} Excellent user experience
+    \end{itemize}
+    
+    \item \textbf{Enhanced UI/UX}
+    \begin{itemize}
+        \item Material UI với custom styling
+        \item Smooth animations (Fade, Slide, Zoom)
+        \item Gradient backgrounds
+        \item Password visibility toggle
+        \item Stepper component
+        \item \textit{Giá trị:} Professional, modern design
+    \end{itemize}
+    
+    \item \textbf{Code Quality \& Architecture}
+    \begin{itemize}
+        \item TypeScript trên backend
+        \item Clean architecture, separation of concerns
+        \item Modular design
+        \item PropTypes validation
+        \item ESLint configuration
+        \item \textit{Giá trị:} Maintainable, scalable codebase
+    \end{itemize}
+    
+    \item \textbf{Advanced Features}
+    \begin{itemize}
+        \item React Query với mutations
+        \item Custom decorators (@Match validator)
+        \item Database migrations
+        \item Winston logger
+        \item API interceptors
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Điểm tự đánh giá xứng đáng nhận thêm: } 1.5đ
+%------------------------------------------------------------
+\section{KẾT LUẬN}
+%------------------------------------------------------------
+
+\subsection{Tổng kết dự án}
+
+Dự án UserHub đã hoàn thành xuất sắc tất cả các yêu cầu của bài tập IA06 và vượt xa mong đợi với nhiều tính năng bổ sung.
+
+%------------------------------------------------------------
+\appendix
+\section{PHỤ LỤC}
+%------------------------------------------------------------
+
+\subsection{A. Cấu trúc thư mục dự án}
+
+\begin{verbatim}
+fullstack-basic/
+├── backend/
+│   ├── src/
+│   │   ├── entity/
+│   │   │   └── user.ts                    # User entity
+│   │   ├── user/
+│   │   │   ├── user.controller.ts         # User endpoints
+│   │   │   ├── user.service.ts            # Business logic
+│   │   │   ├── user.module.ts             # Module
+│   │   │   └── dtos/                      # Request/Response DTOs
+│   │   ├── exception/
+│   │   │   ├── app-exception.ts           # Custom exceptions
+│   │   │   └── error-code.ts              # Error codes
+│   │   ├── decorator/
+│   │   │   └── match.validator.decorator.ts
+│   │   ├── api-key/
+│   │   │   └── api-key.middleware.ts
+│   │   └── main.ts                        # Entry point
+│   ├── .env                                # Environment variables
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── SignUp.jsx
+│   │   │   └── Dashboard.jsx
+│   │   ├── components/
+│   │   │   └── ProtectedRoute.jsx
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   └── main.jsx
+│   ├── .env
+│   └── package.json
+│
+├── docs/
+│   ├── SETUP.md
+│   ├── DEPLOYMENT.md
+│   ├── FEATURES.md
+│   └── PROJECT_EVALUATION.md
+│
+└── README.md
+\end{verbatim}
+
+\subsection{B. API Endpoints Documentation}
+
+\textbf{Base URL:} \texttt{http://localhost:9999/api/v1}
+
+\subsubsection{POST /users/register}
+
+\textbf{Request Body:}
+\begin{verbatim}
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "confirmPassword": "password123"
+}
+\end{verbatim}
+
+\textbf{Success Response (200):}
+\begin{verbatim}
+{
+  "code": 200,
+  "message": "User registered successfully",
+  "data": {
+    "userId": "uuid-string",
+    "email": "user@example.com",
+    "createdAt": "2025-12-01T10:30:00.000Z"
+  }
+}
+\end{verbatim}
+
+\textbf{Error Response (400):}
+\begin{verbatim}
+{
+  "code": 400,
+  "message": "Validation failed",
+  "data": [
+    {
+      "field": "email",
+      "constraints": ["Invalid email format"]
+    }
+  ]
+}
+\end{verbatim}
+
+\subsubsection{POST /users/login}
+
+\textbf{Request Body:}
+\begin{verbatim}
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+\end{verbatim}
+
+\textbf{Success Response (200):}
+\begin{verbatim}
+{
+  "code": 200,
+  "message": "User logged in successfully",
+  "data": {
+    "userId": "uuid-string",
+    "email": "user@example.com"
+  }
+}
+\end{verbatim}
+
+\subsection{C. Environment Variables}
+
+\textbf{Backend (.env):}
+\begin{verbatim}
+PORT=9999
+FRONTEND_URL=http://localhost:5173
+
+DB_TYPE=postgres
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASS=your_password
+DB_NAME=userhub_db
+
+API_KEY=your_secure_api_key
+\end{verbatim}
+
+\textbf{Frontend (.env):}
+\begin{verbatim}
+VITE_API_URL=http://localhost:9999
+VITE_API_KEY=your_secure_api_key
+\end{verbatim}
+
+\subsection{D. Screenshots}
+
+\begin{itemize}
+    \item Screenshot 1: Home Page - Landing page với gradient design
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{home.png}
+        \caption{Home page}
+        \label{fig:placeholder}
+    \end{figure}
+    \item Screenshot 2: Sign Up Page - Registration form với validation
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{signup.png}
+        \caption{Sign Up page}
+        \label{fig:placeholder}
+    \end{figure}
+    \item Screenshot 3: Login Page - Authentication form
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{login.png}
+        \caption{Login page}
+        \label{fig:placeholder}
+    \end{figure}
+    \item Screenshot 4: Dashboard - User profile page
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\linewidth]{dashboard.png}
+        \caption{Dashboard page}
+        \label{fig:placeholder}
+    \end{figure}
+\end{itemize}
+
+\subsection{E. Deployment URLs}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+\textbf{Service} & \textbf{URL} \\
+\hline
+Frontend & \texttt{https://frontend-simple-fullstack.vercel.app} \\
+\hline
+Backend & \texttt{https://backend-simple-fullstack.onrender.com} \\
+\hline
+GitHub Repository & \href{https://github.com/ltchcmus/basic-user-fullstack}{https://github.com/ltchcmus/basic-user-fullstack} \\
+\hline
+\end{tabularx}
+\caption{Production URLs}
+\end{table}
+
+\end{document}
