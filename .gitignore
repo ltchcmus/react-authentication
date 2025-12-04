@@ -85,3 +85,6 @@ pnpm-lock.yaml
 # Misc
 .next/
 out/
+
+*.tex
+.env.docker

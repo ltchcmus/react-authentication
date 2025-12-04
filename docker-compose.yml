@@ -20,8 +20,15 @@ services:
       DB_NAME: postgres
       # Server Configuration
       PORT: 9999
-      API_KEY: lethanhcongW9KzkHtB1vmRrjRmPY6zCxZOkWfwUglrGOwOxKBSREEzF7VLGhXPMEH7mgdrKkCwL4k74qeXLNwywXQRcgrzek
+      NODE_ENV: development
       FRONTEND_URL: http://localhost:3000
+      # API Key
+      API_KEY: lethanhcongW9KzkHtB1vmRrjRmPY6zCxZOkWfwUglrGOwOxKBSREEzF7VLGhXPMEH7mgdrKkCwL4k74qeXLNwywXQRcgrzek
+      # JWT Configuration
+      JWT_SECRET: lethanhcongSecretKey
+      JWT_REFRESH_SECRET: lethanhcongRefreshSecretKey
+      JWT_EXPIRES_IN: 5m
+      JWT_REFRESH_EXPIRES_IN: 30m
     networks:
       - userhub-network
 
